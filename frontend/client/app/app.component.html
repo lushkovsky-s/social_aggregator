@@ -1,0 +1,17 @@
+<h1>Posts:</h1>
+<div class="posts-wrapper"> 
+  <post ng-repeat="post in posts" ng-if="post.post_video"
+    fullname="{{ post.fullname }}"
+    username="{{ post.username }}"
+    link="{{ post.social === 'vk' ? 'https://vk.com/' + post.username : '' }}"
+    user-photo="{{ post.user_photo }}"
+    post-text="{{ post.post_text }}"
+    post-image="{{ post.post_image }}"
+    post-video="{{ post.post_video }}"
+    date="{{ post.date }}"
+    retweets-count="{{ post.counters.retweets }}"
+    likes-count="{{ post.counters.likes }}"
+    reposts-count="{{ post.counters.reposts }}"
+    views-count="{{ post.counters.views }}"
+  ></post>
+</div>

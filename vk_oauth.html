@@ -1,0 +1,21 @@
+<body>
+	<button id="btn">Authorize</button>
+
+	<script>
+		const CLIENT_ID = '7004931'
+		const API_VERSION = '5.59'
+
+		const query = new URLSearchParams(window.location.search)
+		const code = query.get('code')
+
+		window.onload = () => {
+			if (code) {
+				document.getElementsById('btn').style.display = 'none'
+			} else {
+				document.getElementById('btn').onclick = () => {
+					window.location.href = `https://oauth.vk.com/authorize?client_id=${CLIENT_ID}&display=page&redirect_uri=http://localhost:3000&response_type=token&v=5.59`
+				}
+			}
+		}
+	</script>
+</body>

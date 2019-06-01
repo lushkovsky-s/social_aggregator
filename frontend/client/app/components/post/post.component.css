@@ -1,0 +1,39 @@
+.post {
+    display: inline-block;
+    text-align: left;
+    background-color: white;
+    width: 400px;
+    padding: 20px 30px;
+    border-radius: 5px;
+}
+
+.post__header {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.post__header__photo {
+    flex: 1;
+    border-radius: 50%;
+    margin-right: 20px;
+    height: 20px;
+}
+
+.post__header__info__fullname {
+    font-weight: bold;
+}
+
+.post__header__info {
+    flex: 5;
+}
+
+.post__content__image {
+    width: 100%;
+}
+
+.post__footer__retweets,
+.post__footer__likes,
+.post__footer__reposts,
+.post__footer__views {
+    display: inline-block;
+}

@@ -1,0 +1,23 @@
+<div class="post">
+    <div class="post__header">
+        <img class="post__header__photo" src="{{ userPhoto }}" alt="user photo" />
+        <div class="post__header__info">
+            <div class="post__header__info__fullname">{{ fullname }}</div>
+            <a class="post__header__info__username" href="{{link}}" target="_blank">{{ username }}</a>
+        </div>
+    </div>
+    <div class="post__content"> 
+        <div class="post__content__text">
+            {{ postText | limitTo: 60 }}{{ postText.length > 60 ? '...': '' }}
+        </div>
+        <img ng-if="postImage" class="post__content__image" src="{{ postImage }} " alt="post image" />
+        <iframe ng-if="postVideo" src="{{ postVideo }}" height="360" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="post__footer">
+        <div class="post__footer__date">{{ date | date: 'dd MMM yyyy' }}</div>
+        <div ng-if="retweetsCount" class="post__footer__retweets"><b>{{ retweetsCount }}</b> Retweets</div>
+        <div ng-if="repostsCount" class="post__footer__reposts"><b>{{ repostsCount }}</b> Reposts</div>
+        <div ng-if="likesCount" class="post__footer__likes"><b>{{ likesCount }}</b> Likes</div> 
+        <div ng-if="viewsCount" class="post__footer__views"><b>{{ viewsCount }}</b> Views</div>
+    </div>
+</div>

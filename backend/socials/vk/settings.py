@@ -1,0 +1,3 @@
+API_VERSION = '5.59'
+ACCESS_TOKEN = '' # The service token
+WALL_PARSE_POSTS_COUNT = 100

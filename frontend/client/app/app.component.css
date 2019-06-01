@@ -1,0 +1,12 @@
+body {
+  text-align: center;
+  background-color: lightgray;
+  padding: 20px 50px; 
+}
+
+.posts-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 15px;
+  grid-row-gap: 10px;
+}
