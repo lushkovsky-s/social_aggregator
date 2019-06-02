@@ -36,6 +36,7 @@ def get_embed_src(video_url):
     options = Options()
     options.add_argument('--headless')
     options.add_argument('--disable-gpu') 
+    options.add_argument('--no-sandbox') # Required to run the script as a root
 
     driver = webdriver.Chrome(chrome_options=options)
     driver.get(video_url)
