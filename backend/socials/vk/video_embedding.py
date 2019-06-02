@@ -1,10 +1,8 @@
 import time
 import re
 
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.chrome.options import Options
 
 from .settings import VIDEO_PAGE_LOADING_TIMEOUT
 from . import exceptions as exc
@@ -25,7 +23,6 @@ def get_embed_vk(driver):
     iframe_code = driver.execute_async_script('''
         var done = arguments[0]
         document.addEventListener('DOMNodeInserted', (ev) => {
-            console.log(ev.target.value);
             done(ev.target.value); 
         })
         document.querySelector('[data-action=copy_embed_code]').click()
@@ -36,7 +33,11 @@ def get_embed_vk(driver):
     return iframe_src
 
 def get_embed_src(video_url):
-    driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument('--headless')
+    options.add_argument('--disable-gpu') 
+
+    driver = webdriver.Chrome(chrome_options=options)
     driver.get(video_url)
 
     time.sleep(VIDEO_PAGE_LOADING_TIMEOUT)
