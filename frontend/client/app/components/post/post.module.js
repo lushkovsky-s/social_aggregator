@@ -21,6 +21,9 @@ const postModule = angular.module('post', [])
       repostsCount: '@',
       viewsCount: '@'
     },  
+    controller: ['$scope', '$sce', ($scope, $sce) => {
+      $scope.trustedPostVideo = $sce.trustAsResourceUrl($scope.postVideo)
+    }],
     template
   }));
 

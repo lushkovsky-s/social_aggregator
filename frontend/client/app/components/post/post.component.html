@@ -11,7 +11,7 @@
             {{ postText | limitTo: 60 }}{{ postText.length > 60 ? '...': '' }}
         </div>
         <img ng-if="postImage" class="post__content__image" src="{{ postImage }} " alt="post image" />
-        <iframe ng-if="postVideo" src="{{ postVideo }}" height="360" frameborder="0" allowfullscreen></iframe>
+        <iframe ng-if="postVideo" ng-src="{{ trustedPostVideo }}" height="360" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="post__footer">
         <div class="post__footer__date">{{ date * 1000 | date: 'dd MMM yyyy' }}</div>
