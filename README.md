@@ -3,8 +3,9 @@
 1. [Install](#Install)
 2. [Configuration](#Configuration)
 3. [Running](#Running)
-4. [Console tools](#Console-tools)
-4. [Solution description](#Solution-description)
+4. [Deploy](#Deploy)
+5. [Console tools](#Console-tools)
+6. [Solution description](#Solution-description)
 
 ## Install 
 
@@ -54,23 +55,13 @@ cd frontend
 yarn start # or: npm start
 ```
 
-The frontend will be stared at [localhost:8080](http://localhost:8080)
-
-Otherwise, the frontend could be staticly built:
-```
-cd frontend
-export API_URL="api.mywebpage.com"
-yarn build # or: npm run build
-```
-Replace "api.mywebpage.com" with your api URL. By default "http://localhost:5000" will be used. 
+The frontend will be stared at [localhost:8080](http://localhost:8080) 
 
 ### Backend
 Test server:
 ```
 python app.py
 ```
-
-Otherwise you can run the backend using uWSGI or gunicorn. Flask app is fully compatible with both of them.
 
 ### Parser
 To parse recent posts, run:
@@ -90,6 +81,42 @@ For example:
 This configuration will trigger the parser run every day at 2 AM
 
 You can find the complete guide on cron [here (ru)](https://www.shellhacks.com/ru/crontab-format-cron-job-examples-linux/)
+
+---
+
+## Deploy
+
+### Frontend
+
+1. Build frontend staticly:
+```
+cd frontend
+export API_URL="api.mywebpage.com"
+yarn build # or: npm run build
+```
+Replace "api.mywebpage.com" with your api URL. By default "http://localhost:5000" will be used.
+
+2. Configure your http-server to serve static files from frontend/dist directory.
+For nginx:
+```
+server {
+    server_name your.frontend.domain;
+
+    location / {
+        root /path/to/project/frontend/dist;
+        try_files $uri /$uri index.html =404;
+    }
+}
+```
+
+### Backend
+
+Run the backend using uWSGI or gunicorn. Flask app is fully compatible with both of them.  
+See details in [DEPLOY.md](DEPLOY.md)
+
+### Parser 
+
+Configure cron as described in the previous section
 
 ---
 
