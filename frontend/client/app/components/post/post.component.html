@@ -14,7 +14,7 @@
         <iframe ng-if="postVideo" src="{{ postVideo }}" height="360" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="post__footer">
-        <div class="post__footer__date">{{ date | date: 'dd MMM yyyy' }}</div>
+        <div class="post__footer__date">{{ date * 1000 | date: 'dd MMM yyyy' }}</div>
         <div ng-if="retweetsCount" class="post__footer__retweets"><b>{{ retweetsCount }}</b> Retweets</div>
         <div ng-if="repostsCount" class="post__footer__reposts"><b>{{ repostsCount }}</b> Reposts</div>
         <div ng-if="likesCount" class="post__footer__likes"><b>{{ likesCount }}</b> Likes</div> 
