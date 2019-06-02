@@ -1,6 +1,6 @@
-# Установка зависимостей
+# Dependencies istall
 
-## Фронтенд
+## Fronend
 
 **Yarn** 
 
@@ -15,9 +15,9 @@ cd frontend
 npm install
 ```
 
-## Бекенд
+## Backend
 
-**Без virtualenv** (в глобальное окружение)
+**Without virtualenv** (in global environment)
 ```
 cd backend
 pip install -r requirements.txt
@@ -28,13 +28,13 @@ pip install -r requirements.txt
 cd backend
 python3.6 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip3.6 install -r requirements.txt
 ```
 
 **virtualenvwrapper**
 ```
 cd backend
-mkvirtualenv twitter-client
-workon twitter-client
-pip install -r requirements.txt
+mkvirtualenv posts-parser
+workon posts-parser
+pip3.6 install -r requirements.txt
 ```

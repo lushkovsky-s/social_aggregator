@@ -14,6 +14,7 @@ Prerequirements:
 * python (3.6+) and pip 
 * nodejs (8+) and yarn/npm  
 * mongodb
+* chrome and chromedriver
 
 You can check the packages existance using the command:
 ```
@@ -121,3 +122,5 @@ As so, it's been done by using of webpage automation by selenium.
 ### What to improve
 
 * Disable chromedriver logging (messages like "DevTools started on..."). Somehow couldn't be disabled with command line arguments or desired capabilities
+* Parser logging
+* Version-aware chromedriver install guide
