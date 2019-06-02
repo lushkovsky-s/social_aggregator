@@ -1,15 +1,15 @@
 import sys
 import os
 import json
+import re
+import time
 from pprint import pprint
 
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import requests
 
 from .settings import API_VERSION, ACCESS_TOKEN, WALL_PARSE_POSTS_COUNT
+from . import exceptions as exc
+from .video_embedding import get_embed_src
 
 def parse_post(post):
     text = post['text']
@@ -55,9 +55,11 @@ def parse_post(post):
 
             video_url = f'https://vk.com/video{owner_id}_{video_id}'
 
-            embed_src = get_embed_src(video_url)
-
-            if embed_src:
+            try:
+                embed_src = get_embed_src(video_url)
+            except exc.VideoParsingError as e:
+                print(f'WARNING: {e}')
+            else:
                 videos.append(embed_src)
 
     return {
@@ -83,45 +85,13 @@ def api_get(uri, params=None):
 
     if 'error' in resp:
         pprint(resp)
-        raise Exception('VK API Error')
+        raise exc.APIResponseError('VK API Error')
 
     if not 'response' in resp: 
         pprint(resp)
-        raise Exception('Unexpected VK API response: "response" field not found')
+        raise exc.APIResponseError('Unexpected VK API response: "response" field not found')
 
     return resp['response']
-
-def get_embed_src(video_url):
-    driver = webdriver.Chrome()
-    driver.get(video_url)
-
-    youtube_iframe = driver.find_elements_by_xpath('//iframe[contains(@class, "video_yt_player")]')
-
-    if len(youtube_iframe) > 0:
-        iframe_src = youtube_iframe[0].get_attribute('src')
-        driver.close()
-
-        return iframe_src 
-
-    driver.close()
-    return None
-    
-    import time
-    time.sleep(5)
-
-    # Store embed code in clipboard
-    copy_btn = driver.find_element_by_css_selector('[data-action=copy_embed_code]')
-    driver.execute_script('arguments[0].click()', copy_btn)
-    driver.execute_script('var el = document.createElement("input"); el.focus(); document.execCommand("paste"); console.log(el.value);')
-    import pyperclip
-    s = pyperclip.paste()
-    print(s)
-
-    import time
-    time.sleep(10)
-    assert False
-
-    driver.close()
 
 def resolve_username(username):
     resp = api_get('utils.resolveScreenName', params={'screen_name': username})
