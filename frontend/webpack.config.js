@@ -41,6 +41,10 @@ if (isDev) {
         'window.Masonry': 'Masonry'
       }),
 
+      new webpack.DefinePlugin({
+        'process.env.API_URL': JSON.stringify(process.env.API_URL || 'http://localhost:5000')
+      }),
+
       // HtmlWebpackPlugin: Simplifies creation of HTML files to serve your webpack bundles : https://www.npmjs.com/package/html-webpack-plugin
       new HtmlWebpackPlugin({
         filename: 'index.html',
@@ -106,6 +110,10 @@ if (isDev) {
         test: /\.js$|\.css$|\.html$/,
         threshold: 10240,
         minRatio: 0.8
+      }),
+
+      new webpack.DefinePlugin({
+        'process.env.API_URL': JSON.stringify(process.env.API_URL || 'http://localhost:5000')
       }),
 
       // HtmlWebpackPlugin: Simplifies creation of HTML files to serve your webpack bundles : https://www.npmjs.com/package/html-webpack-plugin

@@ -58,8 +58,10 @@ The frontend will be stared at [localhost:8080](http://localhost:8080)
 Otherwise, the frontend could be staticly built:
 ```
 cd frontend
+export API_URL="api.mywebpage.com"
 yarn build # or: npm run build
 ```
+Replace "api.mywebpage.com" with your api URL. By default "http://localhost:5000" will be used. 
 
 ### Backend
 Test server:
